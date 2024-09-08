@@ -1,0 +1,4 @@
+mysql_root_password: "ExpenseApp@1"
+mysql_host: "mysql.devteck.xyz"
+app_location: /app
+component: backend

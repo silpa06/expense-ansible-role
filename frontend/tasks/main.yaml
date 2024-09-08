@@ -1,0 +1,29 @@
+- name: installing nginx
+  ansible.builtin.package:
+      name: nginx
+      state: present
+
+- name: start the nginx
+  ansible.builtin.service: 
+     name: nginx
+     state: started
+     enabled: yes
+     
+- name: import tasks from common role
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-pre-req
+
+- name: extract the frontend code
+  ansible.builtin.unarchive:
+     src: /tmp/frontend.zip
+     dest: /usr/share/nginx/html
+     remote_src: yes
+
+- name: copy the conf file to nginx defaultd
+  ansible.builtin.copy:
+     src: expense.conf 
+     dest: /etc/nginx/default.d/expense.conf
+  notify: 
+  - Restart nginx
+
