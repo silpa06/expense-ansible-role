@@ -14,11 +14,6 @@
     name: common
     tasks_from: app-pre-req
 
-- name: extract the frontend code
-  ansible.builtin.unarchive:
-     src: /tmp/frontend.zip
-     dest: /usr/share/nginx/html
-     remote_src: yes
 
 - name: copy the conf file to nginx defaultd
   ansible.builtin.copy:
